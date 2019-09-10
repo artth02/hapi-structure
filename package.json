@@ -1,0 +1,85 @@
+{
+  "name": "example-api",
+  "version": "1.0.0",
+  "description": "Example API",
+  "main": "libs/index.js",
+  "engines": {
+    "node": "10.12.0",
+    "npm": "6.4.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://artth02@bitbucket.org/artth02/hapi-structure"
+  },
+  "author": "Arthur Fonseca",
+  "license": "ISC",
+  "homepage": "https://bitbucket.org/artth02/hapi-structure-api#readme",
+  "scripts": {
+    "start": "cross-env NODE_CONFIG_DIR=./libs/api/config NODE_ENV=development node libs/api.js",
+    "local": "cross-env NODE_CONFIG_DIR=./libs/api/config NODE_ENV=development nodemon --inspect libs/api.js",
+    "jest-test": "cross-env NODE_CONFIG_DIR=./libs/api/config NODE_ENV=test jest libs/ --detectOpenHandles --forceExit --coverage --verbose",
+    "standard-test": "standard",
+    "test": "npm run standard-test && npm run jest-test",
+    "precommit": "npm run git-hook --no-verify to bypass",
+    "prepush": "npm run git-hook",
+    "git-hook": "npm run test",
+    "jsdoc": "jsdoc -r libs",
+    "jsdoc-view": "start ./out/index.html"
+  },
+  "dependencies": {
+    "aws-sdk": "^2.307.0",
+    "boom": "^7.2.0",
+    "circular-json": "^0.5.5",
+    "config": "^2.0.1",
+    "cross-env": "^5.2.0",
+    "dotenv": "^6.0.0",
+    "hapi": "^16.6.2",
+    "hapi-swaggered": "^2.12.2",
+    "hapi-swaggered-ui": "^2.6.2",
+    "http-status": "^1.2.0",
+    "inert": "^4.2.1",
+    "jest": "^23.6.0",
+    "joi": "^13.6.0",
+    "joi-date-extensions": "^1.2.0",
+    "jsonwebtoken": "^8.4.0",
+    "moment": "^2.22.2",
+    "mongoose": "^5.4.14",
+    "newrelic": "^5.2.1",
+    "ramda": "^0.25.0",
+    "vision": "^4.1.1"
+  },
+  "devDependencies": {
+    "babel-eslint": "^8.0.1",
+    "babel-plugin-istanbul": "^4.1.5",
+    "babel-preset-env": "^1.6.1",
+    "babel-register": "^6.26.0",
+    "husky": "^0.14.3",
+    "iconv-lite": "^0.4.24",
+    "jest": "^24.1.0",
+    "nodemon": "^1.18.10",
+    "standard": "^10.0.3",
+    "supertest": "^3.4.2"
+  },
+  "standard": {
+    "parser": "babel-eslint",
+    "globals": [
+      "describe",
+      "expect",
+      "jest",
+      "it",
+      "test",
+      "socketIO",
+      "connectedClients"
+    ],
+    "ignore": [
+      "/out"
+    ]
+  },
+  "jest": {
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "/build/",
+      "/libs/api/config/test.js"
+    ]
+  }
+}
